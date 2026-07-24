@@ -15,10 +15,10 @@ jobs:
         uses: actions/checkout@v4
 
       # 步骤2：配置 Node.js 20 环境
-      - name: Setup Node.js 20
+      - name: Setup Node.js 24
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: 'npm' # 缓存依赖，下次打包更快
 
       # 步骤3：安装依赖 npm ci（锁定package-lock.json版本，标准化安装）
@@ -27,7 +27,7 @@ jobs:
 
       - name: install debian rollup fix
         run: npm i @rollup/rollup-linux-x64-gnu -D
-        
+
       # 步骤4：打包构建项目 npm run build
       - name: Build Vue project
         run: npm run build
