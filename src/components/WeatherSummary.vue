@@ -30,7 +30,7 @@
             <div class="weather-header">
               <span class="weather-icon">
                 <img
-                  :src="'/icons/yr-weather/' + getYrIcon(item.nowWeather?.icon || '') + '.png'"
+                  :src="getYrIcon(item.nowWeather?.icon || '')"
                   alt="天气图标"
                   width="36"
                   height="36"

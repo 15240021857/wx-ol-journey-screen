@@ -174,11 +174,12 @@ export const qweatherToYrIconMap: Record<string, { day: string; night: string }>
   '901': { day: '04', night: '04' }, // 冷（用阴天图标）
   '999': { day: '04', night: '04' } // 未知（默认阴天）
 }
-
+const BASE_URL = import.meta.env.BASE_URL
 export function getYrIcon(code: string, isDay = true): string {
   const curData = qweatherToYrIconMap[code]
   const curIcon = isDay ? curData?.day : curData?.night
-  return curIcon
+  const curIconPath = `${BASE_URL}/icons/yr-weather/${curIcon ?? '100'}.png`
+  return curIconPath
 }
 // 根据code 获取图标颜色
 export function getIconColor(code: string | number) {

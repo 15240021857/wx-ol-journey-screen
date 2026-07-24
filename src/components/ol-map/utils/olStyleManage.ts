@@ -96,7 +96,7 @@ export class OlStyleFactory {
     const yrIcon = getYrIcon(nowWeather?.icon || '100')
     const curWeatherIcon = new Style({
       image: new Icon({
-        src: `/icons/yr-weather/${yrIcon}.png`,
+        src: yrIcon,
         anchor: [0.5, 0.7],
         scale: 0.4,
         crossOrigin: 'anonymous'
@@ -106,10 +106,11 @@ export class OlStyleFactory {
     curScenicStyleList.push(curWeatherIcon)
     // 预警图标
     const warningEventName = warning?.[0]?.eventName || ''
+    const BASE_URL = import.meta.env.BASE_URL
     if (warningEventName) {
       const warningIconStyle = new Style({
         image: new Icon({
-          src: `/icons/weather/warn-icon.png`,
+          src: `${BASE_URL}/icons/weather/warn-icon.png`,
           anchor: [-0.45, 1.5],
           scale: 0.26,
           crossOrigin: 'anonymous'

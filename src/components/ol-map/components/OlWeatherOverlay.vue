@@ -3,6 +3,7 @@ import { ScenicDataItem } from '@/type/weather'
 import { getYrIcon } from '../utils/hefeng-weather-icon'
 import { useWeatherUtil } from '@/hooks/useWeatherUtil'
 const { getAllWarningHtmlText, getAqiCategoryHtmlText, getVisMap } = useWeatherUtil()
+const BASE_URL = import.meta.env.BASE_URL
 
 withDefaults(
   defineProps<{
@@ -58,7 +59,7 @@ const getVisHtmlText = (visNum: number | string) => {
       <div class="temp-info">
         <div class="temp-left">
           <img
-            :src="`/icons/yr-weather/${getYrIcon(data?.nowWeather?.icon || '')}.png`"
+            :src="getYrIcon(data?.nowWeather?.icon || '')"
             width="50px"
             height="50px"
             alt=""
@@ -121,7 +122,7 @@ const getVisHtmlText = (visNum: number | string) => {
             @click="openDetailDialog(data)"
           >
             <span v-html="getAllWarningHtmlText(data?.warning || [])"></span>
-            <img src="/icons/weather/warn-icon.svg" alt="warn-icon" width="16px" />
+            <img :src="`${BASE_URL}/icons/weather/warn-icon.svg`" alt="warn-icon" width="16px" />
           </span>
           <span v-else class="green-text detail-value">无</span>
         </div>

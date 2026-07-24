@@ -66,6 +66,7 @@ const airqualityList = ref<weatherItem[]>([
   { name: '普通人群', prop: 'airquality.health.advice.generalPopulation', span: 2 },
   { name: '敏感人群', prop: 'airquality.health.advice.sensitivePopulation', span: 2 }
 ])
+const BASE_URL = import.meta.env.BASE_URL
 // 预警信息
 const warningItemList = ref<weatherItem[]>([
   { name: '主题', prop: 'headline', span: 2 },
@@ -75,7 +76,7 @@ const warningItemList = ref<weatherItem[]>([
     formatter(item, curData) {
       const { color, eventName } = curData || {}
       const rgbaStr = `rgba(${color?.red || 0}, ${color?.green || 0}, ${color?.blue || 0}, ${color?.alpha || 0})`
-      return `<span style="color: ${rgbaStr}">${eventName}</span> <img src="/icons/weather/warn-icon.svg" alt="warn-icon" width="16px" />`
+      return `<span style="color: ${rgbaStr}">${eventName}</span> <img src="${BASE_URL}/icons/weather/warn-icon.svg" alt="warn-icon" width="16px" />`
     }
   },
   {

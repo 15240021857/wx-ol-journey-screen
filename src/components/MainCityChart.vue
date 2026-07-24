@@ -21,7 +21,7 @@
       <div class="weather-header">
         <div class="weather-icon">
           <img
-            :src="`/icons/yr-weather/${getYrIcon(curLocationNowWeather?.iconDay ?? '100')}.png`"
+            :src="getYrIcon(curLocationNowWeather?.iconDay) || ''"
             alt="天气图标"
             width="60px"
             height="60px"
