@@ -1,0 +1,5 @@
+export { OlBaseMap, createOlBaseMap } from './utils/olBaseMap'
+export { OlStyleFactory } from './utils/olStyleManage'
+export { OlLayerManage } from './utils/olLayerManage'
+export { OlUtil } from './utils/olUtil'
+export { OlOverlayManage } from './utils/olOverlayManage'

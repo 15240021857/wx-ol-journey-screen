@@ -1,0 +1,106 @@
+@use './dialog.scss';
+@use './el.scss';
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif;
+  background: linear-gradient(135deg, #0a1628 0%, #1a1f35 50%, #0d1b2a 100%);
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+:root {
+  font-size: max((100vw / 1920) * 100, 16px);
+}
+body {
+  font-size: 16px;
+}
+
+// @media screen and (max-width: 1280px) {
+//   :root {
+//     font-size: max((100vw / 1920) * 100, 10px);
+//   }
+// }
+
+@media screen and (min-width: 1920px) {
+  :root {
+    font-size: 100px;
+  }
+}
+
+.vw-layout {
+  width: 100vw;
+  height: 100vh;
+}
+
+.screen-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.glass-card {
+  background: rgba(10, 30, 60, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  border-radius: 0.1rem;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0, 200, 255, 0.5), transparent);
+}
+
+.card-title {
+  font-size: 0.18rem;
+  color: #00d4ff;
+  font-weight: 600;
+  padding-left: 0.1rem;
+  border-left: 3px solid #00d4ff;
+  margin-bottom: 0.1rem;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+@keyframes glow {
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 200, 255, 0.6);
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}

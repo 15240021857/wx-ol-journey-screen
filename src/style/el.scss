@@ -1,0 +1,18 @@
+.custom-loading {
+  // &.el-loading-mask {
+  //   background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  // }
+  .el-loading-spinner {
+    .circular {
+      // width: auto;
+      // height: auto;
+      animation: none;
+      color: #fff;
+      font-size: 60px;
+    }
+  }
+}
+.loading-body-warp {
+  width: 100%;
+  height: calc(100% - 0.3rem);
+}
