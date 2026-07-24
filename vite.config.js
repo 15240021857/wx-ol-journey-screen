@@ -18,6 +18,7 @@ if (tsconfig.compilerOptions.paths) {
 }
 
 export default defineConfig({
+  base: '/wx-ol-journey-screen/',
   plugins: [
     vue(),
     AutoImport({

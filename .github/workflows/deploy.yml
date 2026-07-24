@@ -1,0 +1,41 @@
+name: Deploy Vue Vite to GitHub Pages
+
+# 触发条件：推送到 main 分支时执行流水线
+on:
+  push:
+    branches: [ main ]
+
+# 运行环境：Ubuntu 最新系统
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤1：拉取仓库代码
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 步骤2：配置 Node.js 20 环境
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm' # 缓存依赖，下次打包更快
+
+      # 步骤3：安装依赖 npm ci（锁定package-lock.json版本，标准化安装）
+      - name: Install dependencies
+        run: npm ci
+
+      # 步骤4：打包构建项目 npm run build
+      - name: Build Vue project
+        run: npm run build
+
+      # 步骤5：将打包产物dist文件夹上传为部署静态资源
+      - name: Upload build artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist # vite 默认打包输出目录dist
+
+      # 步骤6：部署静态文件到 GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
