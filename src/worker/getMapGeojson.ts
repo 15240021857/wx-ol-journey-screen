@@ -2,11 +2,13 @@
 let topoOpenjson: any = null
 
 let isProd = false
+let ROOT_URL = ''
 self.onmessage = async e => {
   const { type, data } = e.data
   console.log('onmessage', data)
   if (type === 'init') {
     isProd = data.isProd
+    ROOT_URL = data.ROOT_URL
   }
   if (type === 'getTopojsonMap') {
     await loadTopoJson()
@@ -32,7 +34,7 @@ const loadTopoJson = async () => {
   // if (isProd) {
   //   res = await fetch('/topoOpen.json.gz')
   // } else {
-  res = await fetch('/topoOpen.json')
+  res = await fetch(ROOT_URL + 'topoOpen.json')
   // }
   if (!res.ok) throw new Error('not ok')
   // if (isProd) {

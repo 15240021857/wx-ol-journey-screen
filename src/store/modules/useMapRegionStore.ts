@@ -40,7 +40,8 @@ export const useMapRegionStore = defineStore('mapRegion', () => {
   worker.postMessage({
     type: 'init',
     data: {
-      isProd: import.meta.env.PROD
+      isProd: import.meta.env.PROD,
+      ROOT_URL: import.meta.env.BASE_URL
     }
   })
   worker.postMessage({

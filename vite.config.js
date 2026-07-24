@@ -32,8 +32,8 @@ export default defineConfig({
     // 压缩，打包后删除原文件
     viteCompression({
       algorithm: 'gzip',
-      ext: '.gz',
-      deleteOriginFile: true
+      ext: '.gz'
+      // deleteOriginFile: true
     })
   ],
   resolve: {
@@ -50,10 +50,11 @@ export default defineConfig({
     }
   },
   build: {
+    outDir: 'dist',
+    emptyOutDir: true,
     chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
-        clean: true,
         manualChunks: {
           ol: ['ol'],
           echarts: ['echarts'],
