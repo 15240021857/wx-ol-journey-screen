@@ -25,12 +25,13 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: install debian rollup fix
+        run: npm i @rollup/rollup-linux-x64-gnu -D
+        
       # 步骤4：打包构建项目 npm run build
       - name: Build Vue project
         run: npm run build
 
-      - name: install debian rollup fix
-        run: npm i @rollup/rollup-linux-x64-gnu -D
 
       # 步骤5：将打包产物dist文件夹上传为部署静态资源
       - name: Upload build artifacts
