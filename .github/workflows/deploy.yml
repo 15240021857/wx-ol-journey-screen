@@ -9,16 +9,24 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    # 关键修复：添加以下 permissions 块
+    permissions:
+      contents: read   # 通常 checkout 需要
+      pages: write     # Pages 部署写权限
+      id-token: write  # OIDC Token 权限，缺了这个必报你贴的错误
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       # 步骤1：拉取仓库代码
       - name: Checkout repository
         uses: actions/checkout@v4
 
       # 步骤2：配置 Node.js 20 环境
-      - name: Setup Node.js 24
+      - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
-          node-version: 24
+          node-version: 20
           cache: 'npm' # 缓存依赖，下次打包更快
 
       # 步骤3：安装依赖 npm ci（锁定package-lock.json版本，标准化安装）
@@ -27,7 +35,7 @@ jobs:
 
       - name: install debian rollup fix
         run: npm i @rollup/rollup-linux-x64-gnu -D
-
+        
       # 步骤4：打包构建项目 npm run build
       - name: Build Vue project
         run: npm run build
