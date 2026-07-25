@@ -49,14 +49,14 @@ export const useMapRegionStore = defineStore('mapRegion', () => {
   })
   worker.onmessage = e => {
     const { type, data } = e.data
-    console.log('!!!!!!!!!!!!!!!!!', e)
+    // console.log('!!!!!!!!!!!!!!!!!', e)
 
     if (type === 'getTopojsonMap') {
       // 获取所有区域topo映射关系
       regionTopoMap = data
       topojsonMapLoaded.value = true
     }
-    console.log('onmessage==============================', regionTopoMap.size)
+    // console.log('onmessage==============================', regionTopoMap.size)
   }
   // 获取所有区域topo映射关系
   // const getAllRegionGeojson = () => {

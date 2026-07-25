@@ -5,7 +5,7 @@ let isProd = false
 let ROOT_URL = ''
 self.onmessage = async e => {
   const { type, data } = e.data
-  console.log('onmessage', data)
+  // console.log('onmessage', data)
   if (type === 'init') {
     isProd = data.isProd
     ROOT_URL = data.ROOT_URL
@@ -29,7 +29,7 @@ self.onmessage = async e => {
 const loadTopoJson = async () => {
   if (topoOpenjson) return topoOpenjson
   let res: any
-  console.log('isProd=====================================', isProd)
+  // console.log('isProd=====================================', isProd)
 
   // if (isProd) {
   //   res = await fetch('/topoOpen.json.gz')

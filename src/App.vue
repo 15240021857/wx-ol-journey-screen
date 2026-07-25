@@ -8,13 +8,15 @@
       <div class="header-left">
         <div class="logo">
           <span class="logo-icon">🌐</span>
-          <span class="logo-text">{{ mapRegionStore.curRegion?.name || '当前城市' }}智慧城市</span>
+          <span class="logo-text"
+            >{{ mapRegionOnlineStore.curRegion?.name || '当前城市' }}智慧城市</span
+          >
           <el-cascader
             v-model="regionValue"
-            :options="regionTreeOptions?.children || []"
+            :options="regionTreeOptions || []"
             :props="{
-              label: 'name',
-              value: 'treeID',
+              label: 'label',
+              value: 'value',
               children: 'children',
               checkStrictly: true
             }"
@@ -26,7 +28,9 @@
         </div>
       </div>
       <div class="header-center">
-        <h1 class="title">{{ mapRegionStore.curRegion?.name || '当前城市' }}天气与景点数据大屏</h1>
+        <h1 class="title">
+          {{ mapRegionOnlineStore.curRegion?.name || '当前城市' }}天气与景点数据大屏
+        </h1>
         <div class="subtitle">实时监控 · 数据可视化</div>
       </div>
       <div class="header-right">
@@ -91,21 +95,25 @@ import { useScenicStore } from './store/modules/useScenicStore'
 import { ScenicItem } from '@/data/mockData'
 import { WarningTableItem } from './type/weather'
 import { useMapRegionChoose } from './hooks/useMapRegionChoose'
+import { useMapRegionOptionsOnline } from './hooks/useMapRegionOptionsOnline'
 import UpdateTime from '@/components/components/UpdateTime.vue'
 import { useMapRegionStore } from './store/modules/useMapRegionStore'
+import { useMapRegionOnlineStore } from './store/modules/useMapRegionOnlineStore'
 
 // 地图区域选择
-const { regionTreeOptions } = useMapRegionChoose()
-console.log('regionTreeOptions==', regionTreeOptions)
+// const { regionTreeOptions } = useMapRegionChoose()
 
-const mapRegionStore = useMapRegionStore()
-const regionValue = ref(['1-12', '1-12-15'])
+const { regionTreeOptions } = useMapRegionOptionsOnline()
+
+// const mapRegionStore = useMapRegionStore()
+const mapRegionOnlineStore = useMapRegionOnlineStore()
+const regionValue = ref(['34', '3417'])
 // 区域选择变化
 const handleRegionChange = (val: any) => {
   console.log('val====', val)
   console.log('regionValue==', regionValue)
-  let curRegionTreeId = val[val.length - 1]
-  mapRegionStore.setCurRegionTreeId(curRegionTreeId)
+  let curRegionAdcode = val[val.length - 1]
+  mapRegionOnlineStore.setCurRegionAdcode(curRegionAdcode)
   // 获得区域子节点
   // const regionChildList = getRegionChildList(curRegionTreeId)
   // console.log('regionChildList==', regionChildList)
@@ -171,16 +179,17 @@ watch(
   }
 )
 watch(
-  () => mapRegionStore.topojsonMapLoaded,
+  () => mapRegionOnlineStore.topojsonMapLoaded,
   newVal => {
     if (newVal) {
       // 等待topojson加载完成
-      handleRegionChange(regionValue.value)
+      // handleRegionChange(regionValue.value)
     }
   }
 )
 onMounted(() => {
   // handleRegionChange(regionValue.value)
+  handleRegionChange(regionValue.value)
 })
 </script>
 

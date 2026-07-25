@@ -71,3 +71,7 @@ export const getValueByPropPath = (obj: any, propPath: string) => {
   }
   return cur || ''
 }
+// 给数字字符串补零 如adcode补零
+export const patchZero = (str: string, len: number = 6) => {
+  return str.padEnd(len, '0')
+}

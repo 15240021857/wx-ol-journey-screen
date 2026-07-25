@@ -41,9 +41,11 @@ import { regionChildItem, ScenicDataItem } from '@/type/weather'
 import { useLocationStore } from '@/store/modules/useLocationStore'
 import { useDebounce } from '@/hooks'
 import { useScenicStore } from '@/store/modules/useScenicStore'
-import { useMapRegionStore } from '@/store/modules/useMapRegionStore'
-import { useMapRegionChoose } from '@/hooks/useMapRegionChoose'
+// import { useMapRegionStore } from '@/store/modules/useMapRegionStore'
+// import { useMapRegionChoose } from '@/hooks/useMapRegionChoose'
 import { loadingConfig } from '@/directive/loadingSetting'
+import { useMapRegionOnlineStore } from '@/store/modules/useMapRegionOnlineStore'
+import { useMapRegionOptionsOnline } from '@/hooks/useMapRegionOptionsOnline'
 
 const mapRef = ref(null)
 // 实例初始化
@@ -177,28 +179,32 @@ const { debounceFun: debounceOnMapMoveendCallback } = useDebounce(onMapMoveendCa
   delay: 1000
 })
 // 当前region地图发生变化时，更换地图蒙层展示，镜头View移动
-const mapRegionStore = useMapRegionStore()
-const { getRegionChildMapList } = useMapRegionChoose()
+// const mapRegionStore = useMapRegionStore()
+const mapRegionOnlineStore = useMapRegionOnlineStore()
+// const { getRegionChildMapList } = useMapRegionChoose()
+const { getRegionChildMapList } = useMapRegionOptionsOnline()
 const curLoading = ref(true)
 watch(
-  () => mapRegionStore.curRegionTreeId,
+  () => mapRegionOnlineStore.curRegionAdcode,
   async newVal => {
+    console.log('====================================', newVal)
+
     if (newVal) {
       setCurRegionData(newVal)
       curLoading.value = false
     }
   }
 )
-const setCurRegionData = (curTreeId: string) => {
-  const regionGeojson = mapRegionStore.getRegionGeojson(curTreeId)
+const setCurRegionData = async (curRegionAdcode: string) => {
+  const regionGeojson = await mapRegionOnlineStore.getRegionGeojson(curRegionAdcode)
   if (regionGeojson) {
     olBaseMap.layerManage?.regionSource?.clear()
     console.log('cur regionGeojson=====', regionGeojson)
     const curFeature = regionGeojson?.features?.[0]
     const { level, name, center, centroid } = curFeature?.properties || {}
     // 更新当前选中区域
-    mapRegionStore.setCurRegion({
-      treeId: curTreeId,
+    mapRegionOnlineStore.setCurRegion({
+      adcode: curRegionAdcode,
       name,
       center,
       centroid,
@@ -213,29 +219,29 @@ const setCurRegionData = (curTreeId: string) => {
       padding: [100, 100, 100, 100],
       maxZoom: 11
     })
-    renderRegionChild(curTreeId)
+    renderRegionChild(curRegionAdcode)
   }
 }
 // 渲染子区域
-const renderRegionChild = (regionTreeId: string) => {
-  const childMapList = getRegionChildMapList(regionTreeId)
+const renderRegionChild = async (regionAdcode: string) => {
+  const childMapList = getRegionChildMapList(regionAdcode)
   // 子区域存起来用于获取天气数据
   let regionChildList: regionChildItem[] = []
   if (childMapList.length > 0) {
     for (let child of childMapList) {
-      const childGeojson = mapRegionStore.getRegionGeojson(child.treeID)
+      const childGeojson = await mapRegionOnlineStore.getRegionGeojson(child?.adcode)
       const curChildFeature = childGeojson?.features?.[0]
       const { center, name, level, centroid } = curChildFeature?.properties || {}
       olBaseMap.addGeojsonLayer(childGeojson, 'region', level)
       regionChildList.push({
-        treeId: child.treeID,
+        adcode: child?.adcode,
         name,
         center,
         centroid,
         level
       })
     }
-    mapRegionStore.setCurRegionChildList(regionChildList)
+    mapRegionOnlineStore.setCurRegionChildList(regionChildList)
   }
 }
 onMounted(async () => {

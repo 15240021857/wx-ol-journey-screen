@@ -169,7 +169,7 @@ export interface RegionTreeItem {
 }
 // 当前区域
 export interface CurRegion {
-  treeId: string
+  adcode: string
   name: string
   center: (number | string)[]
   centroid: (number | string)[]
@@ -177,7 +177,7 @@ export interface CurRegion {
 }
 // 区域子区域项，用来获取子区域天气数据
 export interface regionChildItem {
-  treeId: string
+  adcode: string
   name: string
   center: (number | string)[]
   centroid: (number | string)[]
