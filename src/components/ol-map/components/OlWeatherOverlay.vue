@@ -121,7 +121,7 @@ const getVisHtmlText = (visNum: number | string) => {
             :title="data?.warning?.[0]?.headline || ''"
             @click="openDetailDialog(data)"
           >
-            <span v-html="getAllWarningHtmlText(data?.warning || [])"></span>
+            <span class="warn-list" v-html="getAllWarningHtmlText(data?.warning || [])"></span>
             <img :src="`${BASE_URL}/icons/weather/warn-icon.svg`" alt="warn-icon" width="16px" />
           </span>
           <span v-else class="green-text detail-value">无</span>
@@ -414,5 +414,10 @@ const getVisHtmlText = (visNum: number | string) => {
   right: 0.05rem;
   border-left: none;
   border-top: none;
+}
+.warn-list {
+  display: flex;
+  flex-flow: row;
+  gap: 0.02rem;
 }
 </style>

@@ -216,11 +216,13 @@ defineExpose({
         </div>
       </div>
       <div class="dialog-section">
-        <div class="section-title warn-text">预警信息</div>
+        <div class="section-title warn-text">
+          预警信息 {{ `(${data?.warning?.length || 0}个)` }}
+        </div>
         <div class="section-content">
           <template v-if="data?.warning && data?.warning?.length > 0">
             <el-descriptions
-              class="detail-container"
+              class="detail-container warn-container"
               v-for="warnItem in data?.warning || []"
               :key="warnItem.id"
               :column="2"
@@ -273,6 +275,9 @@ defineExpose({
   :deep(.el-descriptions__header) {
     margin-bottom: 0.1rem;
   }
+}
+.warn-container {
+  margin-bottom: 0.1rem;
 }
 .warning-empty {
   :deep(.el-empty__image) {

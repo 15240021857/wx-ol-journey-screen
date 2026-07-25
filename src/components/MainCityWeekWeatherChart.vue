@@ -102,7 +102,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
             const icon = getYrIcon(item.iconDay || '')
             return {
               value: item.tempMax || 0,
-              symbol: icon ? `image://${getYrIcon(icon) || ''}` : 'circle',
+              symbol: icon ? `image://${icon || ''}` : 'circle',
               symbolSize: 26
             }
           }) || [],
@@ -127,7 +127,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
             const icon = getYrIcon(item.iconNight || '')
             return {
               value: item.tempMin || 0,
-              symbol: icon ? `image://${getYrIcon(icon) || ''}` : 'circle',
+              symbol: icon ? `image://${icon || ''}` : 'circle',
               symbolSize: 26
             }
           }) || [],
