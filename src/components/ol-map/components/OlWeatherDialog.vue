@@ -159,7 +159,7 @@ defineExpose({
     :modal="false"
     draggable
     modal-penetrable
-    width="500px"
+    width="5rem"
     top="6vh"
     :z-index="199"
     append-to-body
@@ -176,8 +176,13 @@ defineExpose({
             :column="2"
             size="default"
             border
+            label-width="1rem"
           >
-            <el-descriptions-item v-for="item in baseList" :key="item.prop">
+            <el-descriptions-item
+              v-for="item in baseList"
+              :key="item.prop"
+              class-name="column-style"
+            >
               <template #label>
                 <div class="cell-item">{{ item.name }}</div>
               </template>
@@ -198,6 +203,7 @@ defineExpose({
             :column="2"
             size="default"
             border
+            label-width="1rem"
           >
             <el-descriptions-item
               v-for="item in airqualityList"
@@ -228,7 +234,7 @@ defineExpose({
               :column="2"
               direction="horizontal"
               border
-              label-width="100px"
+              label-width="1rem"
             >
               <el-descriptions-item
                 v-for="item in warningItemList"
@@ -264,7 +270,7 @@ defineExpose({
 .dialog-section {
   margin-bottom: 0.16rem;
   .section-title {
-    font-size: 16px;
+    font-size: 0.16rem;
     font-weight: 600;
     color: #303133;
     margin-bottom: 0.1rem;
@@ -292,10 +298,25 @@ defineExpose({
 }
 .item-value {
   display: flex;
-  min-width: 125px;
+  min-width: 1.05rem;
+  font-size: 0.15rem;
+  line-height: 1.3em;
   flex-flow: row;
   justify-content: flex-start;
   align-items: center;
   gap: 0.05rem;
+}
+.cell-item {
+  font-size: 0.15rem;
+  width: 0.75rem;
+}
+.column-style {
+  background-color: skyblue;
+}
+:deep(.el-descriptions__body .el-descriptions__table.is-bordered .el-descriptions__cell) {
+  padding: 0.08rem 0.11rem;
+}
+:deep(.el-descriptions__title) {
+  font-size: 0.16rem;
 }
 </style>

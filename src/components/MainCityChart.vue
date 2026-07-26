@@ -21,6 +21,7 @@
       <div class="weather-header">
         <div class="weather-icon">
           <img
+            class="main-tianqi-icon"
             :src="getYrIcon(curLocationNowWeather?.iconDay) || ''"
             alt="天气图标"
             width="60px"
@@ -318,6 +319,10 @@ const openWeatherDialog = (scenicData: ScenicDataItem, type: 'scenic' | 'warning
     justify-content: center;
     align-items: flex-end;
     gap: 0.05rem;
+  }
+  .main-tianqi-icon {
+    width: 0.6rem;
+    height: 0.6rem;
   }
   .weather-text {
     font-size: 0.16rem;

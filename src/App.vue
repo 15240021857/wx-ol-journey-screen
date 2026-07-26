@@ -194,7 +194,7 @@ onMounted(() => {
 
 .map-background {
   position: absolute;
-  top: 0;
+  top: 0.7rem;
   left: 0;
   right: 0;
   bottom: 0;
@@ -220,13 +220,11 @@ onMounted(() => {
   top: 0;
   left: 0;
   right: 0;
-  height: 6vw;
-  max-height: 70px;
-  min-height: 50px;
+  height: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 2vw;
+  padding: 0 0.4rem;
   background: rgba(5, 20, 40, 0.7);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0, 200, 255, 0.15);
@@ -288,13 +286,13 @@ onMounted(() => {
 
 .left-panel {
   position: absolute;
-  top: calc(70px + 20px);
-  left: 0.5vw;
-  width: 22vw;
-  bottom: calc(35px + 20px);
+  top: calc(0.7rem + 0.2rem);
+  left: 0.1rem;
+  width: 22%;
+  bottom: calc(0.35rem + 0.2rem);
   display: flex;
   flex-direction: column;
-  gap: 0.5vw;
+  gap: 0.1rem;
   z-index: 100;
 }
 
@@ -308,13 +306,13 @@ onMounted(() => {
 
 .right-panel {
   position: absolute;
-  top: calc(70px + 20px);
-  right: 0.5vw;
-  width: 25vw;
-  bottom: calc(35px + 20px);
+  top: calc(0.7rem + 0.2rem);
+  right: 0.1rem;
+  width: 25%;
+  bottom: calc(0.35rem + 0.2rem);
   display: flex;
   flex-direction: column;
-  gap: 0.5vw;
+  gap: 0.1rem;
   z-index: 100;
 }
 
@@ -323,13 +321,11 @@ onMounted(() => {
   bottom: 0;
   left: 0;
   right: 0;
-  height: 3vw;
-  max-height: 35px;
-  min-height: 25px;
+  height: 0.35rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 2vw;
+  padding: 0 0.4rem;
   background: rgba(5, 20, 40, 0.65);
   backdrop-filter: blur(12px);
   border-top: 1px solid rgba(0, 200, 255, 0.15);
@@ -361,29 +357,29 @@ onMounted(() => {
 }
 
 .corner.top-left {
-  top: calc(70px + 10px);
-  left: 2px;
+  top: calc(0.7rem + 0.1rem);
+  left: 0.02rem;
   border-right: none;
   border-bottom: none;
 }
 
 .corner.top-right {
-  top: calc(70px + 10px);
-  right: 2px;
+  top: calc(0.7rem + 0.1rem);
+  right: 0.02rem;
   border-left: none;
   border-bottom: none;
 }
 
 .corner.bottom-left {
-  bottom: calc(35px + 10px);
-  left: 2px;
+  bottom: calc(0.35rem + 0.1rem);
+  left: 0.02rem;
   border-right: none;
   border-top: none;
 }
 
 .corner.bottom-right {
-  bottom: calc(35px + 10px);
-  right: 2px;
+  bottom: calc(0.35rem + 0.1rem);
+  right: 0.02rem;
   border-left: none;
   border-top: none;
 }

@@ -1,16 +1,17 @@
 <template>
   <div class="visitor-chart-container glass-card">
     <div class="card-title">当前景点告警</div>
-    <div class="chart-wrapper">
+    <div ref="chartWrapperRef" class="chart-wrapper">
       <el-table
         class="warning-table"
         :data="warningList"
-        height="225"
+        width="100%"
+        :height="tableHeight"
         empty-text="暂无告警"
         ref="tableRef"
         :row-style="{
           background: 'transparent',
-          height: '63px',
+          height: '0.63rem',
           cursor: 'pointer'
         }"
         @row-click="handleRowClick"
@@ -25,8 +26,8 @@
           </el-empty>
         </template>
 
-        <el-table-column prop="name" label="景点名称" width="100" />
-        <el-table-column prop="eventName" label="类型" width="55">
+        <el-table-column prop="name" label="景点名称" min-width="100" />
+        <el-table-column prop="eventName" label="类型" min-width="55">
           <template #default="scope">
             <div
               :style="{
@@ -39,14 +40,14 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="headline" label="告警内容" width="150">
+        <el-table-column prop="headline" label="告警内容" min-width="130">
           <template #default="scope">
             <span :title="scope.row.description" style="text-decoration: underline">{{
               scope.row.headline
             }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="effectiveTime" label="生效时间" width="150">
+        <el-table-column prop="effectiveTime" label="生效时间" min-width="120">
           <template #default="scope">
             {{ dayjs(scope.row.effectiveTime).format('YYYY-MM-DD HH:mm') }}
           </template>
@@ -76,13 +77,27 @@ const setTableData = (data: WarningTableItem[]) => {
     tableTimer = null
   }
   tableTimer = setTimeout(() => {
+    // updateTableHeight()
     startAutoScrollTable()
   }, 1000)
 }
 
 const tableRef = useTemplateRef<HTMLDivElement>('tableRef')
-// 初始化表格自动滚动
-const ROW_HEIGHT = 63
+const chartWrapperRef = useTemplateRef<HTMLDivElement>('chartWrapperRef')
+const tableHeight = ref(225)
+
+const updateTableHeight = () => {
+  if (chartWrapperRef.value) {
+    tableHeight.value = chartWrapperRef.value.clientHeight
+  }
+}
+
+const getDefaultRowHeight = () => {
+  const scaleX = window.innerWidth / 1920
+  const scaleY = window.innerHeight / 1080
+  const scale = Math.min(scaleX, scaleY)
+  return 63 * scale
+}
 let scrollTimer: number | null = null
 const cancelTimer = () => {
   if (scrollTimer) {
@@ -96,7 +111,7 @@ const getRowHeight = () => {
   if (tableRow) {
     return tableRow.offsetHeight
   }
-  return ROW_HEIGHT
+  return getDefaultRowHeight()
 }
 const startAutoScrollTable = () => {
   const tableRoot: any = tableRef.value
@@ -142,11 +157,21 @@ const handleRowClick = (row: WarningTableItem) => {
   }
 }
 
+onMounted(() => {
+  updateTableHeight()
+  window.addEventListener('resize', handleResize)
+})
+
+const handleResize = () => {
+  updateTableHeight()
+}
+
 onUnmounted(() => {
   if (scrollTimer) {
     clearTimeout(scrollTimer)
     scrollTimer = null
   }
+  window.removeEventListener('resize', handleResize)
 })
 defineExpose({
   setTableData
@@ -167,6 +192,8 @@ defineExpose({
   }
   :deep(.cell) {
     padding: 0 6px;
+    font-size: 0.16rem;
+    line-height: 1.5em;
   }
   :deep(.el-table__empty-text) {
     line-height: 17vh;

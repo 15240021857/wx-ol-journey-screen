@@ -2,6 +2,7 @@ import { Feature } from 'ol'
 import { Circle, Fill, Icon, Stroke, Style, Text } from 'ol/style'
 import { getYrIcon, getIconColor } from './hefeng-weather-icon'
 import { FeatureLike } from 'ol/Feature'
+import { getFontSize, getIconScale, getMapStyleOffset } from '@/util/echarts-adapter'
 
 // 处理图层样式，包括点、线、多边线，最好能缓存，避免重复创建
 export class OlStyleFactory {
@@ -75,7 +76,8 @@ export class OlStyleFactory {
       '4A': 'rgba(243, 89, 17, 0.93)',
       other: 'rgba(243, 89, 17, 1)'
     }
-    const fontSize = level === '5A' ? '18px' : '18px'
+    const remSize = getFontSize(18)
+    const fontSize = level === '5A' ? `${remSize}px` : `${remSize}px`
     const curScenicStyleList = [
       new Style({
         text: new Text({
@@ -84,7 +86,7 @@ export class OlStyleFactory {
           fill: new Fill({
             color: levelMap[level as keyof typeof levelMap] || levelMap.other
           }),
-          offsetY: 20,
+          offsetY: getMapStyleOffset(20),
           stroke: new Stroke({
             color: 'white',
             width: 2
@@ -98,7 +100,7 @@ export class OlStyleFactory {
       image: new Icon({
         src: yrIcon,
         anchor: [0.5, 0.7],
-        scale: 0.4,
+        scale: getIconScale(0.4),
         crossOrigin: 'anonymous'
       })
     })
@@ -111,8 +113,8 @@ export class OlStyleFactory {
       const warningIconStyle = new Style({
         image: new Icon({
           src: `${BASE_URL}/icons/weather/warn-icon.png`,
-          anchor: [-0.45, 1.5],
-          scale: 0.26,
+          anchor: [-0.3, 1.3],
+          scale: getIconScale(0.26),
           crossOrigin: 'anonymous'
         })
       })

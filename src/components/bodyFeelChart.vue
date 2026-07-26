@@ -18,6 +18,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import * as echarts from 'echarts'
 import { loadingConfig } from '@/directive/loadingSetting'
+import { getFontSize } from '@/util/echarts-adapter'
 
 interface BodyFeelItem {
   name: string
@@ -40,6 +41,7 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
       backgroundColor: 'rgba(10, 30, 60, 0.9)',
       borderColor: 'rgba(0, 200, 255, 0.3)',
       textStyle: {
+        fontSize: getFontSize(12),
         color: '#fff'
       },
       formatter: (params: any) => {
@@ -56,7 +58,8 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
     legend: {
       data: ['体感温度', '景点温度'],
       textStyle: {
-        color: '#aaa'
+        color: '#aaa',
+        fontSize: getFontSize(12)
       },
       top: -2
     },
@@ -72,7 +75,7 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
       data: bodyFeelList.map(item => item.name),
       axisLabel: {
         color: '#aaa',
-        fontSize: 12,
+        fontSize: getFontSize(12),
         rotate: 26
       },
       axisLine: {
@@ -85,7 +88,7 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
       name: '温度 ℃',
       nameTextStyle: {
         color: '#aaa',
-        fontSize: 10,
+        fontSize: getFontSize(12),
         padding: [0, -10, 5, 0]
       },
       type: 'value',
@@ -112,7 +115,7 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
           show: true,
           position: 'top',
           color: '#00d4ff',
-          fontSize: 12
+          fontSize: getFontSize(12)
         },
         barMaxWidth: 28,
         itemStyle: {
@@ -139,7 +142,7 @@ const renderChart = (bodyFeelList: BodyFeelItem[], firstRender: boolean = false)
           show: true,
           position: 'top',
           color: '#fff',
-          fontSize: 12
+          fontSize: getFontSize(12)
         },
         barMaxWidth: 28,
         itemStyle: {

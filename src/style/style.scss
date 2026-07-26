@@ -22,23 +22,22 @@ body {
 }
 
 :root {
-  font-size: max((100vw / 1920) * 100, 16px);
+  --design-width: 1920;
+  --design-height: 1080;
+  --scale-x: calc(100vw / var(--design-width));
+  --scale-y: calc(100vh / var(--design-height));
+  --min-scale: min(var(--scale-x), var(--scale-y));
+  font-size: max(calc(var(--min-scale) * 100), 50px);
 }
 body {
-  font-size: 16px;
+  font-size: 0.16rem;
 }
 
-// @media screen and (max-width: 1280px) {
+// @media screen and (min-width: 1920px) and (min-height: 1080px) {
 //   :root {
-//     font-size: max((100vw / 1920) * 100, 10px);
+//     font-size: 100px;
 //   }
 // }
-
-@media screen and (min-width: 1920px) {
-  :root {
-    font-size: 100px;
-  }
-}
 
 .vw-layout {
   width: 100vw;

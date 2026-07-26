@@ -19,6 +19,7 @@ import { ref, onMounted, onUnmounted, watch } from 'vue'
 import * as echarts from 'echarts'
 import { AirQualityLevel } from '@/type/weather'
 import { loadingConfig } from '@/directive/loadingSetting'
+import { getFontSize } from '@/util/echarts-adapter'
 
 const chartRef = ref(null)
 let chart: echarts.ECharts | null = null
@@ -68,6 +69,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
       backgroundColor: 'rgba(10, 30, 60, 0.9)',
       borderColor: 'rgba(0, 200, 255, 0.3)',
       textStyle: {
+        fontSize: getFontSize(12),
         color: '#fff'
       },
       formatter: (params: any) => {
@@ -87,7 +89,8 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
     legend: {
       data: ['AQI (CN)', 'PM2.5'],
       textStyle: {
-        color: '#aaa'
+        color: '#aaa',
+        fontSize: getFontSize(12)
       },
       top: -2
     },
@@ -103,7 +106,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
       data: airQualityList.map(item => item.name),
       axisLabel: {
         color: '#aaa',
-        fontSize: 12,
+        fontSize: getFontSize(12),
         rotate: 26
       },
       axisLine: {
@@ -116,7 +119,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
       name: '空气质量指数',
       nameTextStyle: {
         color: '#aaa',
-        fontSize: 10,
+        fontSize: getFontSize(10),
         padding: [0, -10, 5, 0]
       },
       type: 'value',
@@ -144,7 +147,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
           show: true,
           position: 'top',
           color: '#00d4ff',
-          fontSize: 12,
+          fontSize: getFontSize(12),
           formatter: (params: any) => {
             const aqi = params.value ?? 0
             let { aqiLevel, richTextKey } = getAirQualityLevel(aqi)
@@ -197,7 +200,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
           show: true,
           position: 'top',
           color: '#fff',
-          fontSize: 12
+          fontSize: getFontSize(12)
         },
         barMaxWidth: 28,
         itemStyle: {

@@ -23,6 +23,7 @@ import { getYrIcon } from './ol-map/utils/hefeng-weather-icon'
 import { getWeekDateText } from '@/util'
 import { useMapRegionStore } from '@/store/modules/useMapRegionStore'
 import { loadingConfig } from '@/directive/loadingSetting'
+import { getFontSize, getIconScale } from '@/util/echarts-adapter'
 
 const weatherStore = useWeatherStore()
 const locationDaysNowWeather = ref<DaysWeatherProps[]>([])
@@ -43,6 +44,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
       backgroundColor: 'rgba(10, 30, 60, 0.9)',
       borderColor: 'rgba(0, 200, 255, 0.3)',
       textStyle: {
+        fontSize: getFontSize(12),
         color: '#fff'
       },
       // formatter: (params: any) => {
@@ -66,6 +68,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
       // type: 'value',
       data: data?.map(item => item.fxDate) || [],
       axisLabel: {
+        fontSize: getFontSize(12),
         color: '#aaa',
         formatter: (value: string) => getWeekDateText(value)
         // rotate: 26
@@ -79,6 +82,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
     yAxis: {
       // type: 'category',
       axisLabel: {
+        fontSize: getFontSize(12),
         color: '#aaa'
       },
       axisLine: {
@@ -103,14 +107,14 @@ const renderChart = (data: DaysWeatherProps[]) => {
             return {
               value: item.tempMax || 0,
               symbol: icon ? `image://${icon || ''}` : 'circle',
-              symbolSize: 26
+              symbolSize: getIconScale(26)
             }
           }) || [],
         label: {
           show: true,
           position: 'top',
           color: '#fff',
-          fontSize: 12
+          fontSize: getFontSize(12)
         }
         // emphasis: {
         //   itemStyle: {
@@ -128,14 +132,14 @@ const renderChart = (data: DaysWeatherProps[]) => {
             return {
               value: item.tempMin || 0,
               symbol: icon ? `image://${icon || ''}` : 'circle',
-              symbolSize: 26
+              symbolSize: getIconScale(26)
             }
           }) || [],
         label: {
           show: true,
           position: 'bottom',
           color: '#fff',
-          fontSize: 12
+          fontSize: getFontSize(12)
         },
         itemStyle: {
           color: 'rgba(255, 255, 255, 0.3)',

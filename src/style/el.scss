@@ -16,3 +16,12 @@
   width: 100%;
   height: calc(100% - 0.3rem);
 }
+.el-button {
+  font-size: 0.16rem;
+  line-height: 1.3em;
+}
+.el-table {
+  .cell {
+    padding: 0 0.07rem !important;
+  }
+}

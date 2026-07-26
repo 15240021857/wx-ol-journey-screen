@@ -44,7 +44,7 @@ const getVisHtmlText = (visNum: number | string) => {
     <div class="popup-glow"></div>
     <div class="popup-header">
       <span class="popup-icon">
-        <img src="@/assets/img/scenic0204.png" width="36px" height="36px" alt="" srcset="" />
+        <img class="popup-icon-img" src="@/assets/img/scenic0204.png" alt="" />
       </span>
       <div class="popup-right">
         <span class="popup-title">{{ data.name }}</span>
@@ -58,13 +58,7 @@ const getVisHtmlText = (visNum: number | string) => {
     <div class="popup-content">
       <div class="temp-info">
         <div class="temp-left">
-          <img
-            :src="getYrIcon(data?.nowWeather?.icon || '')"
-            width="50px"
-            height="50px"
-            alt=""
-            srcset=""
-          />
+          <img class="weather-icon-img" :src="getYrIcon(data?.nowWeather?.icon || '')" alt="" />
           <span class="weather-text">{{ data?.nowWeather?.text }}</span>
         </div>
 
@@ -72,7 +66,7 @@ const getVisHtmlText = (visNum: number | string) => {
           <span class="temp-text">{{ data?.nowWeather?.temp }}°C</span>
           <el-divider direction="vertical" />
           <span class="feellike-item">
-            <img src="@/assets/img/feelLike.png" width="26px" height="26px" alt="" srcset="" />
+            <img class="feellike-icon-img" src="@/assets/img/feelLike.png" alt="" />
             <span class="feellike-text">{{ data?.nowWeather?.feelsLike }}°C</span>
           </span>
           <!-- <el-divider direction="vertical" />
@@ -122,7 +116,11 @@ const getVisHtmlText = (visNum: number | string) => {
             @click="openDetailDialog(data)"
           >
             <span class="warn-list" v-html="getAllWarningHtmlText(data?.warning || [])"></span>
-            <img :src="`${BASE_URL}/icons/weather/warn-icon.svg`" alt="warn-icon" width="16px" />
+            <img
+              class="warn-icon-img"
+              :src="`${BASE_URL}/icons/weather/warn-icon.svg`"
+              alt="warn-icon"
+            />
           </span>
           <span v-else class="green-text detail-value">无</span>
         </div>
@@ -217,6 +215,26 @@ const getVisHtmlText = (visNum: number | string) => {
 
 .popup-icon {
   font-size: 0.24rem;
+}
+
+.popup-icon-img {
+  width: 0.36rem;
+  height: 0.36rem;
+}
+
+.weather-icon-img {
+  width: 0.5rem;
+  height: 0.5rem;
+}
+
+.feellike-icon-img {
+  width: 0.26rem;
+  height: 0.26rem;
+}
+
+.warn-icon-img {
+  width: 0.16rem;
+  height: 0.16rem;
 }
 
 .popup-title {

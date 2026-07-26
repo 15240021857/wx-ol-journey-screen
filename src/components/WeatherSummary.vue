@@ -232,7 +232,7 @@ onUnmounted(() => {
   gap: 0;
 }
 .weather-text {
-  font-size: 0.12rem;
+  font-size: 0.14rem;
   color: #fff;
 }
 
@@ -255,7 +255,7 @@ onUnmounted(() => {
 }
 
 .weather-name {
-  font-size: 0.14rem;
+  font-size: 0.16rem;
   color: #00d4ff;
   margin-bottom: 0.05rem;
   white-space: nowrap;
@@ -272,11 +272,11 @@ onUnmounted(() => {
 }
 
 .weather-humidity {
-  font-size: 0.1rem;
+  font-size: 0.12rem;
   color: #aaa;
 }
 .weather-item {
-  font-size: 0.12rem;
+  font-size: 0.14rem;
   color: #aaa;
   /* white-space: nowrap; */
   max-width: 100%;
