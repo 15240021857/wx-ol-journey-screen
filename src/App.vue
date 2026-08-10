@@ -8,7 +8,7 @@
       <div class="header-left">
         <div class="logo">
           <span class="logo-icon">🌐</span>
-          <span class="logo-text">{{ mapRegionStore.curRegion?.name || '当前城市' }}智慧城市</span>
+          <span class="logo-text">监测地区</span>
           <el-cascader
             v-model="regionValue"
             :options="regionTreeOptions?.children || []"
@@ -21,12 +21,13 @@
             filterable
             clearable
             placeholder="请选择区域"
+            style="width: 120px"
             @change="handleRegionChange"
           />
         </div>
       </div>
       <div class="header-center">
-        <h1 class="title">{{ mapRegionStore.curRegion?.name || '当前城市' }}天气与景点数据大屏</h1>
+        <h1 class="title">城市与景点天气数据大屏</h1>
         <div class="subtitle">实时监控 · 数据可视化</div>
       </div>
       <div class="header-right">
