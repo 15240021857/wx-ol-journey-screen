@@ -99,7 +99,7 @@ const { regionTreeOptions } = useMapRegionChoose()
 console.log('regionTreeOptions==', regionTreeOptions)
 
 const mapRegionStore = useMapRegionStore()
-const regionValue = ref(['1-12', '1-12-15'])
+const regionValue = ref(['1-15'])
 // 区域选择变化
 const handleRegionChange = (val: any) => {
   console.log('val====', val)

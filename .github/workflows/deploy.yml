@@ -3,7 +3,7 @@ name: Deploy Vue Vite to GitHub Pages
 # 触发条件：推送到 main 分支时执行流水线
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 # 运行环境：Ubuntu 最新系统
 jobs:
@@ -11,9 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     # 关键修复：添加以下 permissions 块
     permissions:
-      contents: read   # 通常 checkout 需要
-      pages: write     # Pages 部署写权限
-      id-token: write  # OIDC Token 权限，缺了这个必报你贴的错误
+      contents: read # 通常 checkout 需要
+      pages: write # Pages 部署写权限
+      id-token: write # OIDC Token 权限，缺了这个必报你贴的错误
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
@@ -35,11 +35,10 @@ jobs:
 
       - name: install debian rollup fix
         run: npm i @rollup/rollup-linux-x64-gnu -D
-        
+
       # 步骤4：打包构建项目 npm run build
       - name: Build Vue project
         run: npm run build
-
 
       # 步骤5：将打包产物dist文件夹上传为部署静态资源
       - name: Upload build artifacts

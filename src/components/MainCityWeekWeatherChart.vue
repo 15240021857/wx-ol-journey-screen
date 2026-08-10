@@ -61,7 +61,7 @@ const renderChart = (data: DaysWeatherProps[]) => {
       left: '3%',
       right: '4%',
       bottom: '3%',
-      top: '10%',
+      top: '16%',
       containLabel: true
     },
     xAxis: {

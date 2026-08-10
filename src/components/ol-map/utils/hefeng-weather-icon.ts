@@ -178,7 +178,7 @@ const BASE_URL = import.meta.env.BASE_URL
 export function getYrIcon(code: string, isDay = true): string {
   const curData = qweatherToYrIconMap[code]
   const curIcon = isDay ? curData?.day : curData?.night
-  const curIconPath = `${BASE_URL}/icons/yr-weather/${curIcon ?? '100'}.png`
+  const curIconPath = `${BASE_URL}icons/yr-weather/${curIcon ?? '100'}.png`
   return curIconPath
 }
 // 根据code 获取图标颜色

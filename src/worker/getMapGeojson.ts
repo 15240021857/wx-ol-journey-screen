@@ -34,7 +34,7 @@ const loadTopoJson = async () => {
   // if (isProd) {
   //   res = await fetch('/topoOpen.json.gz')
   // } else {
-  res = await fetch(ROOT_URL + 'topoOpen.json')
+  res = await fetch(ROOT_URL + 'anhui-topojson.json')
   // }
   if (!res.ok) throw new Error('not ok')
   // if (isProd) {

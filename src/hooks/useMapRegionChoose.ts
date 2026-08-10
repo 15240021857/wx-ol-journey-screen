@@ -1,4 +1,4 @@
-import cnTreeMap from '@/data/topoOpenMap.json'
+import cnTreeMap from '@/data/anhuiTopoMap.json'
 import type { RegionTreeItem } from '@/type/weather'
 
 // 地图区域选择

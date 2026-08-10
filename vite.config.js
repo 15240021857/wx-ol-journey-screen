@@ -31,8 +31,8 @@ export default defineConfig({
     }),
     // 压缩，打包后删除原文件
     viteCompression({
-      algorithm: 'gzip',
-      ext: '.gz'
+      algorithm: ['gzip', 'brotli'],
+      ext: '.gz, .br,'
       // deleteOriginFile: true
     })
   ],

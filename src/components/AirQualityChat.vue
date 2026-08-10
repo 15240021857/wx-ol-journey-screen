@@ -107,7 +107,7 @@ const renderChart = (airQualityList: any[], firstRender: boolean = false) => {
       axisLabel: {
         color: '#aaa',
         fontSize: getFontSize(12),
-        rotate: 26
+        rotate: 22
       },
       axisLine: {
         lineStyle: {
