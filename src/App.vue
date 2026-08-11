@@ -27,7 +27,7 @@
         </div>
       </div>
       <div class="header-center">
-        <h1 class="title">城市与景点天气数据大屏</h1>
+        <h1 class="title">城市与景点天气预警数据大屏</h1>
         <div class="subtitle">实时监控 · 数据可视化</div>
       </div>
       <div class="header-right">
