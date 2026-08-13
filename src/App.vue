@@ -28,7 +28,7 @@
       </div>
       <div class="header-center">
         <h1 class="title">城市与景点天气预警数据大屏</h1>
-        <div class="subtitle">实时监控 · 数据可视化</div>
+        <div class="subtitle">地图中心50km内景点 · 实时监控 · 数据可视化</div>
       </div>
       <div class="header-right">
         <UpdateTime />
